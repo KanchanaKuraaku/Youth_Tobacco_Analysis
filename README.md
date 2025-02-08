@@ -1,65 +1,80 @@
-# Youth Tobacco Survey Data Analysis
+# Youth Tobacco Survey Data Analysis Project
 
-This repository contains a Jupyter Notebook for analyzing the Youth Tobacco Survey (YTS) data.  The notebook explores trends in tobacco use among youth, identifies potential risk factors, and provides visualizations to understand the data.
+This project analyzes data from the Youth Tobacco Survey (YTS), a comprehensive dataset providing insights into tobacco use among middle and high school students across the United States.  The goal is to identify trends, behaviors, and risk factors associated with tobacco use in youth.
 
-## Project Goal
+## Project Overview
 
-The primary goal of this project is to analyze the YTS data to understand patterns of tobacco use among youth, focusing on demographic trends, risk factors, and changes over time. The data set spans two decades and provides insights into the prevalence of different types of tobacco use, including cigarette smoking, smokeless tobacco use and cessation efforts.
-
-## Data Source
-
-The data used in this project is the Youth Tobacco Survey (YTS) dataset.  This dataset is publicly available.
+The Youth Tobacco Survey (YTS) dataset offers valuable information on youth tobacco use, covering demographic details, geographic locations, and various aspects of tobacco-related behaviors and attitudes. This analysis leverages data science techniques to uncover patterns and trends within this rich dataset.
 
 
 ## Data Description
 
-The YTS dataset includes comprehensive information about tobacco use, exposure to tobacco smoke, cessation attempts, school curricula, and related factors.  Key attributes include:
+The dataset includes information collected from middle school (grades 6-8) and high school (grades 9-12) students regarding:
 
-* **Demographics:** Year, location (state/territory), gender, race/ethnicity, age, education level
-* **Tobacco Use:** Type of tobacco product used (cigarettes, smokeless tobacco, etc.), current user status, quit attempts
-* **Survey Measures:** Data values, confidence limits, sample size, etc.
-* **GeoLocation:** Geographic location of surveyed students.
+* **Tobacco Use:**  Cigarette smoking, smokeless tobacco use, e-cigarette use, and cessation efforts.
+* **Demographics:** Gender, race, age, education, and geographic location.
+* **Attitudes and Knowledge:** Perceptions of tobacco use and related media influences.
+* **Environmental Factors:** Exposure to environmental tobacco smoke and access to tobacco products.
 
-## Analysis Steps
+**Key Attributes:**
 
-The analysis in the Jupyter notebook follows these general steps:
-
-1. **Data Loading and Preprocessing:** The notebook loads the CSV data from Google Drive, handles missing values, converts datatypes, and addresses outliers.
-
-
-2. **Exploratory Data Analysis (EDA):** Descriptive statistics, frequency distributions, and visualizations (histograms, box plots, bar charts, pie charts) are used to explore the data and understand the relationship between different attributes. 
-
-3. **Trend Analysis:** Time-series analysis of tobacco use trends over the years is conducted.
-
-4. **Demographic Analysis:** The analysis investigates the relationship between tobacco use and demographic factors.
-
-5. **Data Visualization:** Interactive visualizations are created to present the findings clearly.
-
-## Technologies Used
-
-* **Python:** The core programming language for data analysis and visualization.
-* **Pandas:**  For data manipulation and analysis.
-* **NumPy:** For numerical operations.
-* **Seaborn & Matplotlib:** For data visualization.
-* **Google Colab:** The development environment (Jupyter Notebook).
-
-## Getting Started
+* `YEAR`: Year of data collection.
+* `LocationDesc`: Location (state or territory).
+* `TopicDesc`: Specific topic related to tobacco use (e.g., "Cigarette Use (Youth)").
+* `Response`: Student's responses to survey questions.
+* `Gender`: Gender of the respondent.
+* `Education`: Education level of the respondent.
+* `GeoLocation`: Geographic coordinates.
+* `High_Confidence_Limit`, `Low_Confidence_Limit`: Confidence intervals for data values.
+* **Other attributes**:  Various identifiers and detailed measures related to tobacco use.
 
 
-1. **Clone the Repository:** Clone this repository to your local machine.
-2. **Google Drive Setup:**  Upload the YTS dataset to your Google Drive. The script assumes the file is named `Youth_Tobacco_Survey__YTS__Data.csv` and is located in your MyDrive folder. 
-3. **Run the Notebook:** Open the Jupyter Notebook and execute the code cells.  You will need to authorize the notebook to access your Google Drive in order to read in the data.
+## Data Preprocessing and Cleaning
 
+1. **Handling Missing Values:**  The 'Response' column has a substantial number of missing values. Instead of simply removing these rows, the analysis uses imputation techniques. Missing values in 'Response' were imputed based on patterns observed in the 'MeasureDesc' column, and missing values in numerical columns (e.g. `High_Confidence_Limit`, `Low_Confidence_Limit`) were imputed using median.
+
+
+2. **Outlier Detection:** Box plots were used to identify outliers in numerical data, particularly in the 'High_Confidence_Limit' and 'Low_Confidence_Limit' columns, but no outlier removal was performed.
+
+
+3. **Feature Selection:** Irrelevant columns (single-value columns, redundant information, those with limited predictive power) were removed to improve efficiency and focus the analysis on the most relevant variables.
+
+
+4. **Data Transformation:** The 'Gender' and 'Education' attributes were analyzed. No further transformation was performed on these attributes.
+
+## Exploratory Data Analysis (EDA)
+
+The EDA uses a variety of visualizations and summary statistics to understand the data:
+
+1. **Histograms:** Used to visualize distributions of numerical data like 'High_Confidence_Limit' and 'Low_Confidence_Limit'.
+
+
+2. **Bar Charts:** Examine the prevalence of different tobacco use topics across different survey years, and the relationship between education level and gender.
+
+
+3. **Pie Charts:** Visualizes the distribution of responses by gender.
+
+4. **Countplots:**  Shows the relationship between 'Response' and 'Gender'.
+
+
+## Results and Insights
+
+The analysis reveals key trends in youth tobacco use, including:
+
+* **Prevalence of different tobacco products**:  Visualizations show the changing patterns of different tobacco use in the youth.
+* **Gender differences**:  The role of gender in tobacco use trends is highlighted.
+* **Geographic variations**: This can be observed by analyzing `LocationDesc`
+* **Temporal trends**:  Trends of tobacco use over time.
 
 
 ## Future Work
 
-Potential extensions of this project include:
+* **Advanced statistical modeling**:  More sophisticated machine learning methods could uncover more in-depth insights.
+* **Geographic analysis**:  Explore the geographical distribution of tobacco use with more advanced geospatial data visualization and analytics.
+* **Integration with additional datasets**:  Combining data from other relevant sources may provide deeper insights.
 
-* More sophisticated statistical modeling to predict tobacco use.
-* Machine learning techniques to identify risk factors.
-* Development of interactive dashboards for visualizing the results.
+## Setup and Dependencies
 
-## Contributing
+* **Python Libraries:** pandas, NumPy, seaborn, matplotlib, SciPy
+* **Google Colaboratory:** The code was originally developed and executed in a Google Colab environment, though it can be adapted for other environments.
 
-Contributions are welcome!  Feel free to open issues or submit pull requests.
